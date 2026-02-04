@@ -4,7 +4,7 @@ import java.util.Scanner;
 public class BibliotecaApp {
 
     // prestamo = [idPrestamo, nombreUsuario, tituloLibro, diasPrestamo, multaPorDia]
-    static ArrayList<ArrayList<Object>> prestamos = new ArrayList<>();
+    static Object[][] prestamos = new Object[10][5];
     static Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {
@@ -41,8 +41,48 @@ public class BibliotecaApp {
     }
 
     // ====== CRUD (por implementar) ======
-    static void registrarPrestamo() { /* TODO */ }
-    static void mostrarPrestamos() { /* TODO */ }
+    static void registrarPrestamo() {
+    boolean registrado = false;
+
+    for (int i = 0; i < prestamos.length; i++) {
+        if (prestamos[i][0] == null && !registrado) {
+
+            prestamos[i][0] = leerEntero("ID del préstamo: ");
+            prestamos[i][1] = leerTexto("Nombre del usuario: ");
+            prestamos[i][2] = leerTexto("Título del libro: ");
+            prestamos[i][3] = leerEntero("Días de préstamo: ");
+            prestamos[i][4] = leerEntero("Multa por día: ");
+
+            registrado = true;
+            System.out.println("Préstamo registrado correctamente.");
+        }
+    }
+
+    if (!registrado) {
+        System.out.println("No hay espacio para registrar más préstamos.");
+    }
+}
+    static void mostrarPrestamos() {boolean hayPrestamos = false;
+
+    System.out.println("=== Lista de Préstamos ===");
+
+    for (int i = 0; i < prestamos.length; i++) {
+        if (prestamos[i][0] != null) {
+            hayPrestamos = true;
+
+            System.out.println("ID: " + prestamos[i][0]);
+            System.out.println("Usuario: " + prestamos[i][1]);
+            System.out.println("Libro: " + prestamos[i][2]);
+            System.out.println("Días de préstamo: " + prestamos[i][3]);
+            System.out.println("Multa por día: " + prestamos[i][4]);
+            System.out.println("--------------------------");
+        }
+    }
+
+    if (!hayPrestamos) {
+        System.out.println("No hay préstamos registrados.");
+    }
+}
     static void buscarPrestamoPorId() { /* TODO */ }
     static void actualizarPrestamo() { /* TODO */ }
     static void eliminarPrestamo() { 
@@ -87,4 +127,3 @@ public class BibliotecaApp {
         return sc.nextLine().trim();
     }
 }
-
