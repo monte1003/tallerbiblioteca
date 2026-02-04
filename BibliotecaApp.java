@@ -4,7 +4,7 @@ import java.util.Scanner;
 public class BibliotecaApp {
 
     // prestamo = [idPrestamo, nombreUsuario, tituloLibro, diasPrestamo, multaPorDia]
-    static ArrayList<ArrayList<Object>> prestamos = new ArrayList<>();
+    static Object[][] prestamos = new Object[10][5];
     static Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {
