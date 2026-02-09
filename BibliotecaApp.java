@@ -41,8 +41,7 @@ public class BibliotecaApp {
     }
 
     // ====== CRUD (por implementar) ======
-    static void registrarPrestamo() { /* TODO */ }
-    static void mostrarPrestamos() { /* TODO */ }
+  
     static void buscarPrestamoPorId() { 
         int id = leerEntero("Ingrese el ID a buscar: ");
         for (int i = 0; i < filas; i++) {
@@ -74,15 +73,24 @@ public class BibliotecaApp {
         }
         System.out.println("Préstamo no encontrado.");
       }
-     }
-    static void eliminarPrestamo() { /* TODO */ }     
+     }  
 
     // ====== Utilidades mínimas ======
     static int leerEntero(String msg) {
-        
+         while (true) {
+            System.out.print(msg);
+            try {
+                return Integer.parseInt(sc.nextLine().trim());
+            } catch (Exception e) {
+                System.out.println("Ingrese un entero válido.");
+            }
+        }
     }
 
     static String leerTexto(String msg) {
+        System.out.print(msg);
+        return sc.nextLine().trim();
+     }
     }
 }
 
