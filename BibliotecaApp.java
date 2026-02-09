@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class BibliotecaApp {
@@ -6,6 +5,7 @@ public class BibliotecaApp {
     // prestamo = [idPrestamo, nombreUsuario, tituloLibro, diasPrestamo, multaPorDia]
     static Object[][] prestamos = new Object[100][100];
     static Scanner sc = new Scanner(System.in);
+    static int filas = 0; // cantidad de préstamos registrados
 
     public static void main(String[] args) {
         int opcion;
@@ -14,14 +14,14 @@ public class BibliotecaApp {
             opcion = leerEntero("Seleccione una opción: ");
 
             switch (opcion) {
-                case 1 :registrarPrestamo(); break;
-                case 2 :mostrarPrestamos(); break;
-                case 3 :buscarPrestamoPorId(); break;
-                case 4 :actualizarPrestamo(); break;
-                case 5 :eliminarPrestamo(); break;
-                case 6 :calcularTotalMultas(); break;
-                case 7 :System.out.println("Saliendo..."); break;
-                default :System.out.println("Opción inválida."); break;
+                case 1: registrarPrestamo(); break;
+                case 2: mostrarPrestamos(); break;
+                case 3: buscarPrestamoPorId(); break;
+                case 4: actualizarPrestamo(); break;
+                case 5: eliminarPrestamo(); break;
+                case 6: calcularTotalMultas(); break;
+                case 7: System.out.println("Saliendo..."); break;
+                default: System.out.println("Opción inválida."); break;
             }
             System.out.println();
         } while (opcion != 7);
@@ -61,7 +61,6 @@ public class BibliotecaApp {
                 return;
             }
         }
-     }
 
     // ====== Cálculo (por implementar) ======
     static void calcularTotalMultas() { 
@@ -72,9 +71,48 @@ public class BibliotecaApp {
             total += dias * multaDia;
         }
         System.out.println("Total de multas: $" + total);
+        prestamos[filas][0] = leerEntero("ID del préstamo: ");
+        prestamos[filas][1] = leerTexto("Nombre del usuario: ");
+        prestamos[filas][2] = leerTexto("Título del libro: ");
+        prestamos[filas][3] = leerEntero("Días de préstamo: ");
+        prestamos[filas][4] = leerEntero("Multa por día: ");
+
+        filas++;
+        System.out.println("Préstamo registrado correctamente.");
     }
 
-    // ====== Utilidades mínimas ======
+    static void mostrarPrestamos() {
+        if (filas == 0) {
+            System.out.println("No hay préstamos registrados.");
+            return;
+        }
+
+        for (int i = 0; i < filas; i++) {
+            System.out.println(
+                "ID: " + prestamos[i][0] +
+                ", Usuario: " + prestamos[i][1] +
+                ", Libro: " + prestamos[i][2] +
+                ", Días: " + prestamos[i][3] +
+                ", Multa/día: " + prestamos[i][4]
+            );
+        }
+    }
+
+    static void buscarPrestamoPorId() {
+ 
+    }
+
+    static void actualizarPrestamo() {
+    }
+
+    static void eliminarPrestamo() {
+    }
+
+    // ====== Cálculo ======
+    static void calcularTotalMultas() {
+    }
+
+    // ====== Utilidades ======
     static int leerEntero(String msg) {
         while (true) {
             System.out.print(msg);
@@ -91,4 +129,3 @@ public class BibliotecaApp {
         return sc.nextLine().trim();
     }
 }
-
