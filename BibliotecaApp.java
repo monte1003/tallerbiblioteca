@@ -14,14 +14,14 @@ public class BibliotecaApp {
             opcion = leerEntero("Seleccione una opción: ");
 
             switch (opcion) {
-                case 1 -> registrarPrestamo();
-                case 2 -> mostrarPrestamos();
-                case 3 -> buscarPrestamoPorId();
-                case 4 -> actualizarPrestamo();
-                case 5 -> eliminarPrestamo();
-                case 6 -> calcularTotalMultas();
-                case 7 -> System.out.println("Saliendo...");
-                default -> System.out.println("Opción inválida.");
+                case 1: registrarPrestamo(); break;
+                case 2: mostrarPrestamos(); break;
+                case 3: buscarPrestamoPorId(); break;
+                case 4: actualizarPrestamo(); break;
+                case 5: eliminarPrestamo(); break;
+                case 6: calcularTotalMultas(); break;
+                case 7: System.out.println("Saliendo..."); break; 
+                default: System.out.println("Opción inválida."); break;
             }
             System.out.println();
         } while (opcion != 7);
@@ -43,48 +43,46 @@ public class BibliotecaApp {
     // ====== CRUD (por implementar) ======
     static void registrarPrestamo() { /* TODO */ }
     static void mostrarPrestamos() { /* TODO */ }
-    static void buscarPrestamoPorId() { /* TODO */ }
-    static void actualizarPrestamo() { /* TODO */ }
-    static void eliminarPrestamo() { 
-        int i, j;
-        int id_eliminarPrestamo;
-        id_eliminarPrestamo = sc.nextInt();
-        for (i = 0; i < filas; i++){
-            if(prestamo[i][1] = id_eliminarPrestamo){
-                prestamos[i][1] = prestamos[i+1][1];
+    static void buscarPrestamoPorId() { 
+        int id = leerEntero("Ingrese el ID a buscar: ");
+        for (int i = 0; i < filas; i++) {
+            if ((int) prestamos[i][0] == id) {
+                System.out.println(
+                    "ID: " + prestamos[i][0] +
+                    ", Usuario: " + prestamos[i][1] +
+                    ", Libro: " + prestamos[i][2] +
+                    ", Días: " + prestamos[i][3] +
+                    ", Multa/día: " + prestamos[i][4]
+                );
+                return;
             }
         }
+        System.out.println("Préstamo no encontrado.");
+      }
      }
-
-    // ====== Cálculo (por implementar) ======
-    static void calcularTotalMultas() { 
-        float calculo[] = new float[n];
-        for(int i = 0; i < filas; i++){
-            float calculos = prestamos[i][4] * prestamos[i][5];
-            calculo[i] = calculos;
+    static void actualizarPrestamo() { 
+                int id = leerEntero("Ingrese el ID a actualizar: ");
+        for (int i = 0; i < filas; i++) {
+            if ((int) prestamos[i][0] == id) {
+                prestamos[i][1] = leerTexto("Nuevo nombre de usuario: ");
+                prestamos[i][2] = leerTexto("Nuevo título del libro: ");
+                prestamos[i][3] = leerEntero("Nuevos días de préstamo: ");
+                prestamos[i][4] = leerEntero("Nueva multa por día: ");
+                System.out.println("Préstamo actualizado.");
+                return;
+            }
         }
-        for(int i = 0; i < filas; i++){
-            System.out.printn(calculo[i]);
-        }
+        System.out.println("Préstamo no encontrado.");
+      }
      }
-
-     
+    static void eliminarPrestamo() { /* TODO */ }     
 
     // ====== Utilidades mínimas ======
     static int leerEntero(String msg) {
-        while (true) {
-            System.out.print(msg);
-            try {
-                return Integer.parseInt(sc.nextLine().trim());
-            } catch (Exception e) {
-                System.out.println("Ingrese un entero válido.");
-            }
-        }
+        
     }
 
     static String leerTexto(String msg) {
-        System.out.print(msg);
-        return sc.nextLine().trim();
     }
 }
 
