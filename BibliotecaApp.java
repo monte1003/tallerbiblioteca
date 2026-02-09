@@ -74,20 +74,6 @@ public class BibliotecaApp {
         }
     }
 
-    static void buscarPrestamoPorId() {
- 
-    }
-
-    static void actualizarPrestamo() {
-    }
-
-    static void eliminarPrestamo() {
-    }
-
-    // ====== Cálculo ======
-    static void calcularTotalMultas() {
-    }
-
     // ====== Utilidades ======
     static int leerEntero(String msg) {
         while (true) {
