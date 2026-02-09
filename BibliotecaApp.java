@@ -41,6 +41,61 @@ public class BibliotecaApp {
     }
 
     // ====== CRUD (por implementar) ======
+  
+    static void buscarPrestamoPorId() { 
+        int id = leerEntero("Ingrese el ID a buscar: ");
+        for (int i = 0; i < filas; i++) {
+            if ((int) prestamos[i][0] == id) {
+                System.out.println(
+                    "ID: " + prestamos[i][0] +
+                    ", Usuario: " + prestamos[i][1] +
+                    ", Libro: " + prestamos[i][2] +
+                    ", Días: " + prestamos[i][3] +
+                    ", Multa/día: " + prestamos[i][4]
+                );
+                return;
+            }
+        }
+        System.out.println("Préstamo no encontrado.");
+      }
+     }
+    static void actualizarPrestamo() { 
+                int id = leerEntero("Ingrese el ID a actualizar: ");
+        for (int i = 0; i < filas; i++) {
+            if ((int) prestamos[i][0] == id) {
+                prestamos[i][1] = leerTexto("Nuevo nombre de usuario: ");
+                prestamos[i][2] = leerTexto("Nuevo título del libro: ");
+                prestamos[i][3] = leerEntero("Nuevos días de préstamo: ");
+                prestamos[i][4] = leerEntero("Nueva multa por día: ");
+                System.out.println("Préstamo actualizado.");
+                return;
+            }
+        }
+        System.out.println("Préstamo no encontrado.");
+      }
+     }  
+    // ====== CRUD ======
+    static void registrarPrestamo() {
+        if (filas >= prestamos.length) {
+            System.out.println("No hay espacio para más préstamos.");
+            return;
+        }
+
+        prestamos[filas][0] = leerEntero("ID del préstamo: ");
+        prestamos[filas][1] = leerTexto("Nombre del usuario: ");
+        prestamos[filas][2] = leerTexto("Título del libro: ");
+        prestamos[filas][3] = leerEntero("Días de préstamo: ");
+        prestamos[filas][4] = leerEntero("Multa por día: ");
+
+        filas++;
+        System.out.println("Préstamo registrado correctamente.");
+    }
+
+    static void mostrarPrestamos() {
+        if (filas == 0) {
+            System.out.println("No hay préstamos registrados.");
+            return;
+        }
 
     static void eliminarPrestamo() { 
         int idEliminar = leerEntero("Ingrese el ID a eliminar: ");
@@ -68,7 +123,7 @@ public class BibliotecaApp {
     }
     // ====== Utilidades ======
     static int leerEntero(String msg) {
-        while (true) {
+         while (true) {
             System.out.print(msg);
             try {
                 return Integer.parseInt(sc.nextLine().trim());
@@ -81,5 +136,6 @@ public class BibliotecaApp {
     static String leerTexto(String msg) {
         System.out.print(msg);
         return sc.nextLine().trim();
+     }
     }
 }
