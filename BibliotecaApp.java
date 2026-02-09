@@ -14,14 +14,14 @@ public class BibliotecaApp {
             opcion = leerEntero("Seleccione una opción: ");
 
             switch (opcion) {
-                case 1 :registrarPrestamo(); break;
-                case 2 :mostrarPrestamos(); break;
-                case 3 :buscarPrestamoPorId(); break;
-                case 4 :actualizarPrestamo(); break;
-                case 5 :eliminarPrestamo(); break;
-                case 6 :calcularTotalMultas(); break;
-                case 7 :System.out.println("Saliendo..."); break;
-                default :System.out.println("Opción inválida."); break;
+                case 1: registrarPrestamo(); break;
+                case 2: mostrarPrestamos(); break;
+                case 3: buscarPrestamoPorId(); break;
+                case 4: actualizarPrestamo(); break;
+                case 5: eliminarPrestamo(); break;
+                case 6: calcularTotalMultas(); break;
+                case 7: System.out.println("Saliendo..."); break;
+                default: System.out.println("Opción inválida."); break;
             }
             System.out.println();
         } while (opcion != 7);
@@ -41,14 +41,7 @@ public class BibliotecaApp {
     }
 
     // ====== CRUD (por implementar) ======
-    static void registrarPrestamo() { 
-          
-    }
-    static void mostrarPrestamos() {
-        
-    }
-    static void buscarPrestamoPorId() { /* TODO */ }
-    static void actualizarPrestamo() { /* TODO */ }
+
     static void eliminarPrestamo() { 
         int idEliminar = leerEntero("Ingrese el ID a eliminar: ");
         for (int i = 0; i < filas; i++) {
