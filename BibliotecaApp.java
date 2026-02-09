@@ -1,11 +1,11 @@
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class BibliotecaApp {
 
     // prestamo = [idPrestamo, nombreUsuario, tituloLibro, diasPrestamo, multaPorDia]
-    static ArrayList<ArrayList<Object>> prestamos = new ArrayList<>();
+    static Object[][] prestamos = new Object[10][5];
     static Scanner sc = new Scanner(System.in);
+    static int filas = 0; // cantidad de préstamos registrados
 
     public static void main(String[] args) {
         int opcion;
@@ -14,14 +14,14 @@ public class BibliotecaApp {
             opcion = leerEntero("Seleccione una opción: ");
 
             switch (opcion) {
-                case 1 -> registrarPrestamo();
-                case 2 -> mostrarPrestamos();
-                case 3 -> buscarPrestamoPorId();
-                case 4 -> actualizarPrestamo();
-                case 5 -> eliminarPrestamo();
-                case 6 -> calcularTotalMultas();
-                case 7 -> System.out.println("Saliendo...");
-                default -> System.out.println("Opción inválida.");
+                case 1: registrarPrestamo(); break;
+                case 2: mostrarPrestamos(); break;
+                case 3: buscarPrestamoPorId(); break;
+                case 4: actualizarPrestamo(); break;
+                case 5: eliminarPrestamo(); break;
+                case 6: calcularTotalMultas(); break;
+                case 7: System.out.println("Saliendo..."); break;
+                default: System.out.println("Opción inválida."); break;
             }
             System.out.println();
         } while (opcion != 7);
@@ -40,37 +40,55 @@ public class BibliotecaApp {
         System.out.println("7. Salir");
     }
 
-    // ====== CRUD (por implementar) ======
-    static void registrarPrestamo() { /* TODO */ }
-    static void mostrarPrestamos() { /* TODO */ }
-    static void buscarPrestamoPorId() { /* TODO */ }
-    static void actualizarPrestamo() { /* TODO */ }
-    static void eliminarPrestamo() { 
-        int i, j;
-        int id_eliminarPrestamo;
-        id_eliminarPrestamo = sc.nextInt();
-        for (i = 0; i < filas; i++){
-            if(prestamo[i][1] = id_eliminarPrestamo){
-                prestamos[i][1] = prestamos[i+1][1];
-            }
+    // ====== CRUD ======
+    static void registrarPrestamo() {
+        if (filas >= prestamos.length) {
+            System.out.println("No hay espacio para más préstamos.");
+            return;
         }
-     }
 
-    // ====== Cálculo (por implementar) ======
-    static void calcularTotalMultas() { 
-        float calculo[] = new float[n];
-        for(int i = 0; i < filas; i++){
-            float calculos = prestamos[i][4] * prestamos[i][5];
-            calculo[i] = calculos;
+        prestamos[filas][0] = leerEntero("ID del préstamo: ");
+        prestamos[filas][1] = leerTexto("Nombre del usuario: ");
+        prestamos[filas][2] = leerTexto("Título del libro: ");
+        prestamos[filas][3] = leerEntero("Días de préstamo: ");
+        prestamos[filas][4] = leerEntero("Multa por día: ");
+
+        filas++;
+        System.out.println("Préstamo registrado correctamente.");
+    }
+
+    static void mostrarPrestamos() {
+        if (filas == 0) {
+            System.out.println("No hay préstamos registrados.");
+            return;
         }
-        for(int i = 0; i < filas; i++){
-            System.out.printn(calculo[i]);
+
+        for (int i = 0; i < filas; i++) {
+            System.out.println(
+                "ID: " + prestamos[i][0] +
+                ", Usuario: " + prestamos[i][1] +
+                ", Libro: " + prestamos[i][2] +
+                ", Días: " + prestamos[i][3] +
+                ", Multa/día: " + prestamos[i][4]
+            );
         }
-     }
+    }
 
-     
+    static void buscarPrestamoPorId() {
+ 
+    }
 
-    // ====== Utilidades mínimas ======
+    static void actualizarPrestamo() {
+    }
+
+    static void eliminarPrestamo() {
+    }
+
+    // ====== Cálculo ======
+    static void calcularTotalMultas() {
+    }
+
+    // ====== Utilidades ======
     static int leerEntero(String msg) {
         while (true) {
             System.out.print(msg);
@@ -87,4 +105,3 @@ public class BibliotecaApp {
         return sc.nextLine().trim();
     }
 }
-
