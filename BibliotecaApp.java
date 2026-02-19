@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class BibliotecaApp {
 
     // prestamo = [idPrestamo, nombreUsuario, tituloLibro, diasPrestamo, multaPorDia]
-    static Object[][] prestamos = new Object[10][5];
+    static Object[][] prestamos = new Object[100][100];
     static Scanner sc = new Scanner(System.in);
     static int filas = 0; // cantidad de préstamos registrados
 
@@ -97,17 +97,30 @@ public class BibliotecaApp {
             return;
         }
 
+    static void eliminarPrestamo() { 
+        int idEliminar = leerEntero("Ingrese el ID a eliminar: ");
         for (int i = 0; i < filas; i++) {
-            System.out.println(
-                "ID: " + prestamos[i][0] +
-                ", Usuario: " + prestamos[i][1] +
-                ", Libro: " + prestamos[i][2] +
-                ", Días: " + prestamos[i][3] +
-                ", Multa/día: " + prestamos[i][4]
-            );
+            if ((int) prestamos[i][0] == idEliminar) {
+                for (int j = i; j < filas - 1; j++) {
+                    prestamos[j] = prestamos[j + 1];
+                }
+                filas--;
+                System.out.println("Préstamo eliminado.");
+                return;
+            }
         }
     }
 
+    // ====== Cálculo (por implementar) ======
+    static void calcularTotalMultas() { 
+        float total = 0;
+        for (int i = 0; i < filas; i++) {
+            int dias = (int) prestamos[i][3];
+            int multaDia = (int) prestamos[i][4];
+            total += dias * multaDia;
+        }
+        System.out.println("Total de multas: $" + total);
+    }
     // ====== Utilidades ======
     static int leerEntero(String msg) {
          while (true) {
